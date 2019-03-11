@@ -1,0 +1,36 @@
+﻿<Window x:Class="CowsCannotReadLogs.Client.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CowsCannotReadLogs.Client.Wpf"
+        xmlns:controls="clr-namespace:CowsCannotReadLogs.Client.Wpf.Controls"
+        mc:Ignorable="d"
+        Title="Cows cannot read logs" Height="450" Width="800"
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown">
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Set _Recognise function..." Click="MenuItemRecogniserFunction_Click" />
+            <Separator />
+            <MenuItem Header="E_xit" Click="MenuItemExit_Click"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <controls:MainGrid x:Name="gridMain" Grid.Column="0" Grid.Row="0" Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </controls:MainGrid>
+        <TextBlock Name="txtMain" Grid.Column="1" Grid.Row="0" Text="{Binding Path=MainText}"/>
+    </Grid>
+</Window>

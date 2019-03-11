@@ -1,0 +1,57 @@
+﻿<Window x:Class="CowsCannotReadLogs.Client.Wpf.RowConverterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CowsCannotReadLogs.Client.Wpf"
+        mc:Ignorable="d"
+        Title="RowConverterWindow" Height="450" Width="800">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Content="_Scripts" Target="{Binding ElementName=cmbDataName}"/>
+        <!--SelectedValuePath="Name"    SelectedValue="{Binding Path=PhonebookEntry}" /> https://stackoverflow.com/questions/561166/binding-a-wpf-combobox-to-a-custom-list-->
+        <ComboBox Name="cmbDataName" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=Items}" DisplayMemberPath="Name" SelectedItem="{Binding ActiveItem}"/>
+
+        <ScrollViewer Grid.Column="1" Grid.Row="2">
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding RecogniserSourceCode, Mode=TwoWay}"/>
+        </ScrollViewer>
+        
+        <GridSplitter Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"/>
+
+        <ScrollViewer Grid.Column="1" Grid.Row="4">
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding ParserSourceCode}"/>
+        </ScrollViewer>
+
+        <GridSplitter Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"/>
+
+        <Grid Grid.Column="1" Grid.Row="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Row="0" HorizontalAlignment="Left" Margin="0,5,0,5">
+                <Button MinWidth="60" Click="BtnCompile_Click">Co_mpile</Button>
+            </WrapPanel>
+            <ScrollViewer Grid.Row="1">
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding CompilerMessage}"/>
+            </ScrollViewer>
+        </Grid>
+
+        <WrapPanel Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Name="btnDialogOk" Click="BtnRowConverterWindowOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
+            <Button IsCancel="True" MinWidth="60">_Cancel</Button>
+        </WrapPanel>
+    </Grid></Window>

@@ -1,0 +1,29 @@
+<Data Version="1">
+  <Items>
+    <Item>
+      <Name>First</Name>
+      <RecogniserFunction>
+      return new Func&lt;string,bool&gt; ((row) =&gt; row.StartsWith("x"));
+      </RecogniserFunction>
+      <ParserFunction>
+    return new Func&lt;string, IEnumerable&lt;string&gt;&gt; ((row) =&gt; row.Split(new[]{','}));
+    </ParserFunction>
+    </Item>
+    <Item>
+      <Name>Main</Name>
+      <RecogniserFunction>return new Func&lt;string, bool&gt; ((s) =&gt; true);</RecogniserFunction>
+      <ParserFunction>return  new Func&lt;string, IEnumerable&lt;string&gt;&gt;((s) =&gt;
+                {
+                    var items = s.Split(' ');
+                    return new[]
+                    {
+                        items.First(),
+                        items.Skip(1).First(),
+                        items.Skip(2).First(),
+                        string.Join(" ", items.Skip(3))
+                    };
+                }
+            );</ParserFunction>
+    </Item>
+  </Items>
+</Data>
